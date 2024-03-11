@@ -10,4 +10,4 @@ def send_message(message: str) -> None:
     )
 
 if __name__ == "__main__":
-    a = send_message("오늘 하루 배운 것을 올려보아요!🤓 <@937996864207331380>")
+    a = send_message("오늘 하루 배운 것을 올려보아요!🤓 @everyone")
