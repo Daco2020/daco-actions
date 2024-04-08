@@ -1,0 +1,31 @@
+name: Run Remind
+
+on:
+  schedule:
+    # 한국시간으로 22시 (UTC 기준 13시), 월요일부터 금요일까지 실행
+    - cron: '0 13 * * 1-5'
+  workflow_dispatch:
+
+env:
+  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Run Remind
+      run: |
+        python remind.py
